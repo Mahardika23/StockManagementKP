@@ -14,6 +14,7 @@ Konfigurasi
         <select class="form-control" name="user_role" id="role">
             <option selected>--Pilih Role User--</option>
          @foreach ($roles as $role)
+         test
         <option value="{{$role->id}}">{{$role->name}}</option>
          @endforeach
         </select>
