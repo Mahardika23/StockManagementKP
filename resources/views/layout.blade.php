@@ -19,9 +19,14 @@
     <div class="sidebar">
         <h1>SMS System</h1>
         <div class="logo">
-            LOGO HERE
+            LOGO    
         </div>
         <ul>
+            @role('super-admin')
+            <a href="/">
+                <li>Konfigurasi</li>
+            </a>
+            @endrole
             <a href="/">
                 <li>Dashboard</li>
             </a>
@@ -46,7 +51,7 @@
                     <li> Data Barang </li>
                 </a>
             </ul>
-            <a href="" onclick="togglePenyesuaian()">
+            <a href="#" onclick="togglePenyesuaian()">
                 <li>Penyesuaian Stok <i class="fas fa-angle-left"></i></li>
             </a>
             <ul class="dropdown-penyesuaian">

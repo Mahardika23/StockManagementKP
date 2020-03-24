@@ -19,6 +19,13 @@ Auth::routes();
 Route::get('/',function(){
     return view('dashboard');
 });
+
+Route::get('/config','ConfigController@index');
+Route::get('/config/getrolepermissions/{id}','ConfigController@getRolePermissions');
+
+Route::post('/updatepermissions','ConfigController@updatePermissions');
+Route::post('/rolebaru','ConfigController@addRole');
+
 Route::prefix('/Management-Data')->group(function () {
     Route::get('/data-barang', function () {
         return view('Management-Data/barang');

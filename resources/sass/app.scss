@@ -8,6 +8,8 @@
 // @import '~bootstrap/scss/bootstrap';
 
 // //
+$primary : #222831;
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
 
 body {
@@ -15,7 +17,7 @@ body {
     margin: 0;
     height: 100%;
     background-color: #393E46;
-
+    color:white;
     .sidebar {
         margin: 0;
         padding: 1.5em;
