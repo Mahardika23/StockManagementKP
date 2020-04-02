@@ -28,10 +28,16 @@
             </a>
             @endrole
             <a href="/">
-                <li>Dashboard</li>
+                <li>Dashboard  </li>
+                <i class="menu-icon fas fa-home"  title="Dasbor"></i>
+                
             </a>
             <a href="#" onclick="toggleDropdown()">
-                <li>Manajemen Data <i class="fas fa-angle-left"></i></li>
+                <li>Manajemen Data <i class="arrows fas fa-angle-left"></i>
+
+                </li>
+                <i class="menu-icon fas fa-layer-group"  title="Manajemen Data"></i>
+
 
             </a>
             <ul class="dropdown-data">
@@ -52,7 +58,9 @@
                 </a>
             </ul>
             <a href="#" onclick="togglePenyesuaian()">
-                <li>Penyesuaian Stok <i class="fas fa-angle-left"></i></li>
+                <li>Penyesuaian Stok <i class="arrows fas fa-angle-left"></i></li>
+                <i class="menu-icon fas fa-box-open"  title="Penyesuaian Stok"></i>
+
             </a>
             <ul class="dropdown-penyesuaian">
                 <li>Stok Masuk</li>
@@ -61,12 +69,18 @@
             </ul>
             <a href="#">
                 <li>Stok Opname</li>
+                <i class="menu-icon fas fa-sync"  title="Stok Opname"></i>
+
             </a>
             <a href="#">
                 <li>Transfer Stok</li>
+                <i class="menu-icon fas fa-truck" title="Transfer Stok"></i>
+
             </a>
             <a href="#" onclick="toggleLaporan()">
-                <li>Laporan <i class="fas fa-angle-left"></i></li>
+                <li>Laporan <i class="arrows fas fa-angle-left"></i></li>
+                <i class="menu-icon fas fa-chart-bar" title="Laporan"></i>
+
             </a>
             <ul class="dropdown-laporan">
                 <li>Laporan Kartu Stock</li>
@@ -78,6 +92,9 @@
 
             <a href="#" id="logout">
                 <li>Logout </li>
+                <i class="menu-icon fas fa-sign-out-alt">
+                </i>
+
             </a>
         </ul>
     </div>
@@ -128,8 +145,10 @@
 
 
     function toggleSidebar() {
-        $(".sidebar").toggle("slide");
-        
+      
+        $(".sidebar").toggleClass("collapsed");
+        $(".content").toggleClass("collapsed");
+
     }
     function toggleDropdown() {
        if ($(".dropdown-laporan").is(':visible')){

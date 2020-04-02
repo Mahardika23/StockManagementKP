@@ -19,7 +19,7 @@ var data = {
         {
             label: "PENJUALAN BARANG",
             data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
-            backgroundColor: "rgba(64, 224, 208)",
+            backgroundColor: "rgba(13, 211, 220)",
      
         }
     ]
