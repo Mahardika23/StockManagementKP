@@ -16,7 +16,7 @@ class CreateItemCategoriesTable extends Migration
         Schema::create('item_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama_kategori');
-            $table->bigInteger('akun');
+            $table->bigInteger('akun')->nullable();
             $table->timestamps();
         });
     }

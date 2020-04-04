@@ -27,19 +27,18 @@ Route::post('/updatepermissions','ConfigController@updatePermissions');
 Route::post('/rolebaru','ConfigController@addRole');
 
 Route::prefix('/Management-Data')->group(function () {
-    Route::get('/data-barang', function () {
-        return view('Management-Data/barang');
-    });
-    Route::get('/data-kategori-barang', function () {
-        return view('Management-Data/kategori-barang');
-    });
-    Route::get('/data-satuan-unit', function () {
+
+    Route::resources([
+        'kategori-barang' => "KategoriBarangController",
+
+    ]);
+    Route::get('/satuan-unit', function () {
         return view('Management-Data/satuan-unit');
     });
-    Route::get('/data-supplier', function () {
+    Route::get('/supplier', function () {
         return view('Management-Data/supplier');
     });
-    Route::get('/data-gudang', function () {
+    Route::get('/gudang', function () {
         return view('Management-Data/gudang');
     });
 });

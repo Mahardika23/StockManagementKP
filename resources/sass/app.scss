@@ -14,10 +14,11 @@ $primary : #222831;
 $text    : white;
 $accent  :  #0DD3DC;
 $circle-rad : 120px;
-$sidebar-size : 15vw;
+$sidebar-size : 17vw;
 $transition-delay: 0.25s;
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
-
+html{
+}
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
@@ -64,6 +65,8 @@ body {
         }
         
         ul {
+            font-family: inherit;
+            
             transition: initial;
             display: flex;
             flex-direction: column;
@@ -82,7 +85,9 @@ body {
                 position: absolute;
             }
             a{
-                
+                // font-weight: 600;
+
+                font-family: inherit;
                 margin: 0 0;
                 .menu-icon {
                     color: $text;
@@ -98,7 +103,9 @@ body {
                 }
             }
             li {
-                    
+                font-size: 0.9rem;
+                font-weight: 600;
+                font-family: inherit;
                 text-decoration: none;
                 color: white;
                 width: fit-content;
@@ -210,7 +217,7 @@ body {
     }
     .content {
         line-height: 2rem;
-        margin: 1.5em 1em 1.3em $sidebar-size+4vw;
+        margin: 1.5em 1em 1.3em $sidebar-size+2vw;
         padding: 1.5em 1em;
         transition: all $transition-delay ease;
         

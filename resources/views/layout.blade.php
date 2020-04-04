@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     @section('css')
-    
+    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
+
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/fontawesome-free-5.12.1-web/css/all.css')}}">
 
@@ -19,7 +20,7 @@
     <div class="sidebar">
         <h1>SMS System</h1>
         <div class="logo">
-            LOGO    
+            LOGO
         </div>
         <ul>
             @role('super-admin')
@@ -28,15 +29,15 @@
             </a>
             @endrole
             <a href="/">
-                <li>Dashboard  </li>
-                <i class="menu-icon fas fa-home"  title="Dasbor"></i>
-                
+                <li>Dashboard </li>
+                <i class="menu-icon fas fa-home" title="Dasbor"></i>
+
             </a>
             <a href="#" onclick="toggleDropdown()">
                 <li>Manajemen Data <i class="arrows fas fa-angle-left"></i>
 
                 </li>
-                <i class="menu-icon fas fa-layer-group"  title="Manajemen Data"></i>
+                <i class="menu-icon fas fa-layer-group" title="Manajemen Data"></i>
 
 
             </a>
@@ -59,7 +60,7 @@
             </ul>
             <a href="#" onclick="togglePenyesuaian()">
                 <li>Penyesuaian Stok <i class="arrows fas fa-angle-left"></i></li>
-                <i class="menu-icon fas fa-box-open"  title="Penyesuaian Stok"></i>
+                <i class="menu-icon fas fa-box-open" title="Penyesuaian Stok"></i>
 
             </a>
             <ul class="dropdown-penyesuaian">
@@ -69,7 +70,7 @@
             </ul>
             <a href="#">
                 <li>Stok Opname</li>
-                <i class="menu-icon fas fa-sync"  title="Stok Opname"></i>
+                <i class="menu-icon fas fa-sync" title="Stok Opname"></i>
 
             </a>
             <a href="#">
@@ -101,7 +102,7 @@
     @show
 
     <div class="content">
-        <div class="container">
+        <div class="main-container">
             @section('content')
             <div class="top-menu">
 
@@ -120,9 +121,18 @@
 </body>
 @section('scripts')
 
-
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+
 <script>
     var menuAktif = document.querySelector('title').innerHTML.trim();
     var allMenus = document.querySelectorAll('.sidebar ul li');

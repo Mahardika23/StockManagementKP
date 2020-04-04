@@ -219,7 +219,7 @@ svg {
 }
 
 table {
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
 }
 
 caption {
@@ -384,9 +384,9 @@ h6,
 .h4,
 .h5,
 .h6 {
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 0.5rem;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.2; */
 }
 
 h1,
@@ -401,7 +401,7 @@ h2,
 
 h3,
 .h3 {
-  font-size: 1.575rem;
+  /* font-size: 1.575rem; */
 }
 
 h4,
@@ -1808,9 +1808,9 @@ pre code {
 
 .table th,
 .table td {
-  padding: 0.75rem;
+  /* padding: 0.75rem;
   vertical-align: top;
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid #dee2e6; */
 }
 
 .table thead th {
@@ -1819,7 +1819,7 @@ pre code {
 }
 
 .table tbody + tbody {
-  border-top: 2px solid #dee2e6;
+  /* border-top: 2px solid #dee2e6; */
 }
 
 .table-sm th,
@@ -1838,7 +1838,7 @@ pre code {
 
 .table-bordered thead th,
 .table-bordered thead td {
-  border-bottom-width: 2px;
+  /* border-bottom-width: 2px; */
 }
 
 .table-borderless th,
@@ -10813,7 +10813,7 @@ a.text-dark:focus {
   }
 
   thead {
-    display: table-header-group;
+    /* display: table-header-group; */
   }
 
   tr,
@@ -10824,13 +10824,13 @@ a.text-dark:focus {
   p,
   h2,
   h3 {
-    orphans: 3;
-    widows: 3;
+    /* orphans: 3;
+    widows: 3; */
   }
 
   h2,
   h3 {
-    page-break-after: avoid;
+    /* page-break-after: avoid; */
   }
 
 @page {
@@ -10875,12 +10875,12 @@ a.text-dark:focus {
   .table-dark td,
   .table-dark thead th,
   .table-dark tbody + tbody {
-    border-color: #dee2e6;
+    /* border-color: #dee2e6; */
   }
 
   .table .thead-dark th {
     color: inherit;
-    border-color: #dee2e6;
+    /* border-color: #dee2e6; */
   }
 }
 

@@ -11,8 +11,8 @@ body .sidebar {
   margin: 0;
   padding: 1.5em;
   top: 0;
-  min-width: 15vw;
-  max-width: 15vw;
+  min-width: 17vw;
+  max-width: 17vw;
   height: 100%;
   background-color: #222831;
   color: white;
@@ -44,6 +44,7 @@ body .sidebar .logo {
 }
 
 body .sidebar ul {
+  font-family: inherit;
   transition: initial;
   display: flex;
   flex-direction: column;
@@ -64,6 +65,7 @@ body .sidebar ul #logout {
 }
 
 body .sidebar ul a {
+  font-family: inherit;
   margin: 0 0;
 }
 
@@ -81,6 +83,9 @@ body .sidebar ul a .menu-icon .fa-sign-out-alt {
 }
 
 body .sidebar ul li {
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
   text-decoration: none;
   color: white;
   width: -webkit-fit-content;
@@ -148,8 +153,8 @@ body .sidebar ul li:hover {
 
 body .sidebar.collapsed {
   transition: all 0.25s ease;
-  min-width: 4.05vw;
-  max-width: 4.05vw;
+  min-width: 4.59vw;
+  max-width: 4.59vw;
 }
 
 body .sidebar.collapsed h1 {
