@@ -42,19 +42,19 @@
 
             </a>
             <ul class="dropdown-data">
-                <a href="/Management-Data/data-satuan-unit">
+                <a href="{{ route('satuan-unit.index')}}">
                     <li> Data Satuan Unit </li>
                 </a>
-                <a href="/Management-Data/data-kategori-barang">
+                <a href="{{ route('kategori-barang.index')}}">
                     <li> Data Kategori Barang </li>
                 </a>
-                <a href="/Management-Data/data-supplier">
+                <a href="{{ route('pemasok.index')}}">
                     <li> Data Pemasok </li>
                 </a>
-                <a href="/Management-Data/ data-gudang">
+                <a href="{{ route('gudang.index')}}">
                     <li>Data Gudang </li>
                 </a>
-                <a href="/Management-Data/data-barang">
+                <a href="{{ route('barang.index')}}">
                     <li> Data Barang </li>
                 </a>
             </ul>

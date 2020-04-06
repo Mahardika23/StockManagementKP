@@ -30,17 +30,13 @@ Route::prefix('/Management-Data')->group(function () {
 
     Route::resources([
         'kategori-barang' => "KategoriBarangController",
+        'barang'          => "BarangResourceController",
+        'satuan-unit'     => "UnitsResourceController",
+        'gudang'          => "WarehouseResourceController",
+        'pemasok'         => "SuppliersResourceController",
 
     ]);
-    Route::get('/satuan-unit', function () {
-        return view('Management-Data/satuan-unit');
-    });
-    Route::get('/supplier', function () {
-        return view('Management-Data/supplier');
-    });
-    Route::get('/gudang', function () {
-        return view('Management-Data/gudang');
-    });
+ 
 });
 
 Route::get('/post', 'StockController@index')->name('home')->middleware('auth');

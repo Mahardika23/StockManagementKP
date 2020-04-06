@@ -1,28 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\ItemCategory;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Schema;
 
-use Illuminate\Support\Facades\DB;
-class KategoriBarangController extends Controller
+use Illuminate\Http\Request;
+
+class UnitsResourceController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    private $modelName = "App\ItemCategory";
+    private $modelName = "App\Unit";
 
     public function index()
     {
         //
       
-        $itemCtg = new $this->modelName;
-        $allItemCtgs = $itemCtg->all(); 
-        return view('Management-Data/kategori-barang',compact("allItemCtgs"));
+        $unit = new $this->modelName;
+        $allUnits = $unit->all();
+        return view('Management-Data/satuan-unit',compact("allUnits"));
 
 
 
@@ -48,10 +45,8 @@ class KategoriBarangController extends Controller
     public function store(Request $request)
     {
         //
-        $input = $request->except("kode_kategori");
-        $input["akun"] = 001;
-        // dd($input);
-        $itemCat = $this->modelName::create($input);
+        $input = $request->input();
+        $data = $this->modelName::create($input);
         return redirect()->back();
     }
 
@@ -88,8 +83,7 @@ class KategoriBarangController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $input = $request->except("kode_kategori");
-        $input["akun"] = 001;
+        $input = $request->input();
         // dd($input);
         $itemCat = $this->modelName::find($id);
         $itemCat->update($input);

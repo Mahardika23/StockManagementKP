@@ -1,28 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\ItemCategory;
+use App\Items;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Schema;
 
-use Illuminate\Support\Facades\DB;
-class KategoriBarangController extends Controller
+class BarangResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    private $modelName = "App\ItemCategory";
+    private $modelName = "App\Items";
 
     public function index()
     {
         //
       
-        $itemCtg = new $this->modelName;
-        $allItemCtgs = $itemCtg->all(); 
-        return view('Management-Data/kategori-barang',compact("allItemCtgs"));
+        $items = new $this->modelName;
+        $allItem = $items->all();
+        return view('Management-Data/barang',compact("allItem"));
 
 
 
@@ -33,12 +30,7 @@ class KategoriBarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-        return view('create_item_ctg');
-    }
-
+  
     /**
      * Store a newly created resource in storage.
      *
@@ -48,8 +40,8 @@ class KategoriBarangController extends Controller
     public function store(Request $request)
     {
         //
-        $input = $request->except("kode_kategori");
-        $input["akun"] = 001;
+        $input = $request->all();
+        // $input["akun"] = 001;
         // dd($input);
         $itemCat = $this->modelName::create($input);
         return redirect()->back();
@@ -75,7 +67,6 @@ class KategoriBarangController extends Controller
     public function edit($id)
     {
         //
-      
     }
 
     /**
@@ -88,13 +79,6 @@ class KategoriBarangController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $input = $request->except("kode_kategori");
-        $input["akun"] = 001;
-        // dd($input);
-        $itemCat = $this->modelName::find($id);
-        $itemCat->update($input);
-        return redirect()->back();
-
     }
 
     /**

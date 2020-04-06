@@ -15,7 +15,7 @@ class CreateWarehousesTable extends Migration
     {
         Schema::create('warehouses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('kode_gudang');
+            $table->string('kode_gudang')->nullable();
             $table->text('alamat');
             $table->text('no_telp');
             $table->enum('status',['tidak aktif','aktif']);

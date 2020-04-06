@@ -1,28 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\ItemCategory;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Schema;
 
-use Illuminate\Support\Facades\DB;
-class KategoriBarangController extends Controller
+use Illuminate\Http\Request;
+
+class SuppliersResourceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    private $modelName = "App\ItemCategory";
+    //
+    private $modelName = "App\Supplier";
 
     public function index()
     {
         //
       
-        $itemCtg = new $this->modelName;
-        $allItemCtgs = $itemCtg->all(); 
-        return view('Management-Data/kategori-barang',compact("allItemCtgs"));
+        $model = new $this->modelName;
+        $allData = $model->all();
+        return view('Management-Data/pemasok',compact("allData"));
 
 
 
@@ -33,11 +26,6 @@ class KategoriBarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-        return view('create_item_ctg');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -48,10 +36,8 @@ class KategoriBarangController extends Controller
     public function store(Request $request)
     {
         //
-        $input = $request->except("kode_kategori");
-        $input["akun"] = 001;
-        // dd($input);
-        $itemCat = $this->modelName::create($input);
+        $input = $request->input();
+        $data = $this->modelName::create($input);
         return redirect()->back();
     }
 
@@ -88,11 +74,10 @@ class KategoriBarangController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $input = $request->except("kode_kategori");
-        $input["akun"] = 001;
+        $input = $request->input();
         // dd($input);
-        $itemCat = $this->modelName::find($id);
-        $itemCat->update($input);
+        $editData = $this->modelName::find($id);
+        $editData->update($input);
         return redirect()->back();
 
     }
@@ -106,8 +91,8 @@ class KategoriBarangController extends Controller
     public function destroy($id)
     {
         //
-        $itc = $this->modelName::find($id);
-        $itc->delete();
+        $data = $this->modelName::find($id);
+        $data->delete();
         return "Success";
     }
 }

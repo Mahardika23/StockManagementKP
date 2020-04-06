@@ -5,7 +5,7 @@
 
 @endsection
 @section('title')
-Data Kategori Barang
+Data Satuan Unit
 @endsection
    
 
@@ -13,8 +13,10 @@ Data Kategori Barang
 
     <tr>
         <th>No</th>
-        <th>Kode</th>
-        <th>Kategori</th>
+        <th>Nama Satuan</th>
+        
+        <th>Dibuat Pada</th>
+        <th>Terakhir Diubah</th>
         <th>Opsi</th>
     </tr>
     @endsection
@@ -23,18 +25,20 @@ Data Kategori Barang
     @section('tableBody')
 
 
-        @foreach ($allItemCtgs as $index => $k)
+        @foreach ($allUnits as $index => $u)
 
         <tr>
             <td>{{$index+1}}</td>
-            <td>{{$k->akun}}</td>
-            <td>{{$k->nama_kategori}}</td>
+            <td>{{$u->nama_satuan}}</td>
+            <td>{{$u->created_at}}</td>
+            <td>{{$u->updated_at}}</td>
+
             <td> <span>
-            <a href="" data-form="Edit Data" data-toggle="modal" data-ctgid="{{$k->id}}" data-target=#modal> Edit</a></span> |
+            <a href="" data-form="Edit Data" data-toggle="modal" data-ctgid="{{$u->id}}" data-target=#modal> Edit</a></span> |
                 <span>
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <a class="delete-jquery" data-method="delete"
-                        href="{{ route('kategori-barang.destroy', $k->id ) }}">Delete</a> </span></td>
+                        href="{{ route('satuan-unit.destroy', $u->id ) }}">Delete</a> </span></td>
         </tr>
         @endforeach
     @endsection
@@ -44,10 +48,8 @@ Data Kategori Barang
 @endsection
 
 @section('modalForm')
-<label for="kodeKategori">Kode Kategori </label>
-<input class="form-control" type="text" id="kodeKategori" name="kode_kategori">
-<label for="namaKategori">Nama Kategori </label>
-<input class="form-control" type="text" name="nama_kategori" id="namaKategori">
+<label for="namaSatuan">Nama Satuan </label>
+<input class="form-control" type="text" name="nama_satuan" id="namaSatuan">
 @endsection
 
 @section('scripts')
