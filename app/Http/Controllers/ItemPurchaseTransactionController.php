@@ -2,84 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\ItemPurchaseTransaction;
 use Illuminate\Http\Request;
+use App\Repositories\Repository;
+use App\ItemPurchaseTransaction;
+use App\Http\Requests\CreateItemCategoryRequest;
 
 class ItemPurchaseTransactionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
+    protected $model;
+    public function __construct(ItemCategory $itemPurchTrans){
+        $this->model = new Repository($itemPurchTrans);
+    }
     public function index()
     {
         //
+      
+        $allData = $this->model->all();
+        return $allData;
+        return view('item-purchases',compact("allData"));
+
+
+
+    }
+    public function store(CreateItemCategory $request)
+    {
+        $input = $request->validated();
+        $data= $this->model->create($input);
+
+        return redirect()->back();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function show($id)
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function update(Request $request, $id)
     {
         //
+        $input = $request->only($this->model->getModel()->fillable);
+       
+        return redirect()->back();
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ItemPurchaseTransaction  $itemPurchaseTransaction
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ItemPurchaseTransaction $itemPurchaseTransaction)
+    public function destroy($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ItemPurchaseTransaction  $itemPurchaseTransaction
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ItemPurchaseTransaction $itemPurchaseTransaction)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ItemPurchaseTransaction  $itemPurchaseTransaction
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ItemPurchaseTransaction $itemPurchaseTransaction)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ItemPurchaseTransaction  $itemPurchaseTransaction
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ItemPurchaseTransaction $itemPurchaseTransaction)
-    {
-        //
+        $this->model->delete($id);
+        return "Success";
     }
 }

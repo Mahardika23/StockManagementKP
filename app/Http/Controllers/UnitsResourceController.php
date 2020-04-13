@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\Repository;
+use App\Unit;
+use App\Http\Requests\CreateUnitRequest;
 
 class UnitsResourceController extends Controller
 {
@@ -11,14 +14,16 @@ class UnitsResourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private $modelName = "App\Unit";
-
+    protected $model;
+    public function __construct(Unit $unit){
+        $this->model = new Repository($unit);
+    }
     public function index()
     {
         //
       
-        $unit = new $this->modelName;
-        $allUnits = $unit->all();
+        $allUnits = $this->model->all();
+        // return "hello?";
         return view('Management-Data/satuan-unit',compact("allUnits"));
 
 
@@ -30,11 +35,12 @@ class UnitsResourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-        return view('create_item_ctg');
-    }
+    // public function create()
+    // {
+    //     //
+    //     $
+    //     return view('create_item_ctg');
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -42,12 +48,13 @@ class UnitsResourceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUnitRequest $request)
     {
         //
-        $input = $request->input();
-        $data = $this->modelName::create($input);
-        return redirect()->back();
+
+        $input = $request->validated();
+        $data = $this->model->create($input);
+        return redirect()->back()->withSucess($message);
     }
 
     /**
@@ -61,18 +68,7 @@ class UnitsResourceController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-      
-    }
-
+  
     /**
      * Update the specified resource in storage.
      *
@@ -83,10 +79,9 @@ class UnitsResourceController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $input = $request->input();
-        // dd($input);
-        $itemCat = $this->modelName::find($id);
-        $itemCat->update($input);
+        $input = $request->only($this->model->getModel()->fillable);
+        return $this->model->update($input,$id);
+
         return redirect()->back();
 
     }
@@ -100,8 +95,7 @@ class UnitsResourceController extends Controller
     public function destroy($id)
     {
         //
-        $itc = $this->modelName::find($id);
-        $itc->delete();
+        $itc = $this->model->delete($id);
         return "Success";
     }
 }

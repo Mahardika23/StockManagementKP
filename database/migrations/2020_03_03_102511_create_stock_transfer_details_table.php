@@ -17,10 +17,7 @@ class CreateStockTransferDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('transfer_stock_id');
             $table->bigInteger('item_id');
-            $table->bigInteger('gudang_asal');
-            $table->bigInteger('gudang_tujuan');
             $table->integer('quantity');
-            $table->timestamps();
         });
     }
 

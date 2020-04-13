@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\StockOpname;
+use App\Services\ItemService;
 use Illuminate\Http\Request;
 
 class StockOpnameController extends Controller
@@ -33,9 +34,16 @@ class StockOpnameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ItemService $itemServ,Request $req)
     {
         //
+
+        $input = $req->input;
+        $itemId = $input['item_id'];
+        $whouseId = $input['warehouse_id'];
+        $qty =$input['qty'];
+        $itemServ->updateStocks($itemId,$whouseId,$qty);
+        
     }
 
     /**

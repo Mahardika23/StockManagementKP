@@ -1,21 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Items;
 use Illuminate\Http\Request;
+use App\Services\ItemService;
+use App\Http\Requests\CreateItemsRequest;
 
-class WarehouseResourceController extends Controller
+class ItemResourceController extends Controller
 {
-    //
-    private $modelName = "App\Warehouse";
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
-    public function index()
+    public function index(ItemService $item)
     {
-        //
-      
-        $model = new $this->modelName;
-        $allData = $model->all();
-        return view('Management-Data/gudang',compact("allData"));
+
+        $allItem = $item->all();
+        return $allItem;
+        return view('Management-Data/barang',compact("allItem"));
 
 
 
@@ -26,27 +30,24 @@ class WarehouseResourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-        return view('create_item_ctg');
-    }
-
+  
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ItemService $itemService, CreateItemsRequest $request)
     {
         //
-        $input = $request->input();
-        $data = $this->modelName::create($input);
-        return redirect()->back();
+        $input = $request->validated();
+
+        $item = $itemService->create($input);
+         
+        return redirect()->back()->withSuccess($message);
     }
 
-    /**
+    /**p
      * Display the specified resource.
      *
      * @param  int  $id
@@ -66,7 +67,6 @@ class WarehouseResourceController extends Controller
     public function edit($id)
     {
         //
-      
     }
 
     /**
@@ -79,11 +79,6 @@ class WarehouseResourceController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $input = $request->input();
-        // dd($input);
-        $editData = $this->modelName::find($id);
-        $editData->update($input);
-        return redirect()->back();
 
     }
 
@@ -96,8 +91,8 @@ class WarehouseResourceController extends Controller
     public function destroy($id)
     {
         //
-        $data = $this->modelName::find($id);
-        $data->delete();
+        $itc = $this->modelName::find($id);
+        $itc->delete();
         return "Success";
     }
 }

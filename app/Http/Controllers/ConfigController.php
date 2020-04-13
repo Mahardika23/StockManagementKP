@@ -28,7 +28,6 @@ class ConfigController extends Controller
         return $rolePermissions;
     }
     public function addRole(Request $r){
-        // dd($r->input());
         foreach ($r['name'] as $name) {
             # code...
             Role::create(['name' =>$name ]);

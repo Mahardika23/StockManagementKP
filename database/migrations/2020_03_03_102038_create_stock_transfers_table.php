@@ -15,8 +15,10 @@ class CreateStockTransfersTable extends Migration
     {
         Schema::create('stock_transfers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('kode_transfer');
-            $table->text('deskripsi');
+            $table->string('kode_transfer')->nullable();
+            $table->bigInteger('gudang_asal');
+            $table->bigInteger('gudang_tujuan');
+            $table->text('deskripsi')->nullable();
             $table->string('departemen');
             $table->timestamps();
         });

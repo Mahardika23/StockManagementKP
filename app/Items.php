@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Items extends Model
 {
     //
-    protected $guarded = ['created_at','updated_at'];
+    protected $guarded = ['id','created_at','updated_at'];
+    public function getTableColumns() {
+        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
     public function unit(){
         return $this->belongsTo('App\Unit','satuan_unit');
 
@@ -35,8 +38,13 @@ class Items extends Model
     }
 
     public function stockMovements(){
-        return $this->belongsToMany('App\Stock_movement','stock_tranfer_details','item_id','transfer_stock_id');
+        return $this->belongsToMany('App\StockMovement','stock_tranfer_details','item_id','transfer_stock_id');
 
     }
-
+    public function warehouseStocks(){
+        return $this->belongsToMany('App\Warehouse','warehouse_stocks','item_id','warehouse_id')->withPivot('quantity');
+    }
+    public function tax(){
+        return $this->hasOne('App\Taxes','pajak_id');
+    }
 }

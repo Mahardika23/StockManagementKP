@@ -4,30 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Repository;
-use App\ItemCategory;
-use App\Http\Requests\CreateItemCategoryRequest;
-
-class ItemCategoryController extends Controller
+use App\Taxes;
+use App\Http\Requests\CreateTaxRequest;
+class TaxResourceController extends Controller
 {
-  
+    //
+
     protected $model;
-    public function __construct(ItemCategory $itemctg){
-        $this->model = new Repository($itemctg);
+    public function __construct(Taxes $tax){
+        $this->model = new Repository($tax);
     }
     public function index()
     {
         //
       
         $allData = $this->model->all();
-        return view('Management-Data/kategori-barang',compact("allData"));
+        return $allData;    
+        // return view('Management-Data/pajak',compact("allData"));
 
 
 
     }
-    public function store(CreateItemCategory $request)
+    public function store(CreateTaxRequest $request)
     {
-        $input = $request->validated();
+        $input = $request->input();
         $data= $this->model->create($input);
+        return $data;
         return redirect()->back();
     }
 
@@ -39,7 +41,8 @@ class ItemCategoryController extends Controller
     {
         //
         $input = $request->only($this->model->getModel()->fillable);
-       
+        // return $this->model->update($input,$id);
+        
         return redirect()->back();
 
     }
@@ -50,4 +53,5 @@ class ItemCategoryController extends Controller
         $this->model->delete($id);
         return "Success";
     }
+
 }

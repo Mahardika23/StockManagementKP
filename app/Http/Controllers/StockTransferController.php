@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\StockTransfer;
 use Illuminate\Http\Request;
-
+use App\Services\StockTransferService;
+use App\Http\Requests\CreateStockTransferRequest;
 class StockTransferController extends Controller
 {
     /**
@@ -12,9 +13,11 @@ class StockTransferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(StockTransferService $stockTf)
     {
         //
+        $allData = $stockTf->all();
+        return view('transfer-stock',compact($allData));
     }
 
     /**
@@ -22,9 +25,14 @@ class StockTransferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(StockTransferService $stockTf,Request $req)
     {
         //
+      
+    }
+
+    public function posting(){
+        //Post transactions to 
     }
 
     /**
@@ -33,9 +41,13 @@ class StockTransferController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StockTransferService $stockTf,CreateStockTransferRequest $req)
     {
         //
+        $input = $req->validated();
+        return $stockTf->make($input);
+        
+
     }
 
     /**
@@ -78,8 +90,11 @@ class StockTransferController extends Controller
      * @param  \App\StockTransfer  $stockTransfer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(StockTransfer $stockTransfer)
+    public function destroy($id)
     {
         //
+        $this->model->delete($id);
+        return "Success";
+    
     }
 }

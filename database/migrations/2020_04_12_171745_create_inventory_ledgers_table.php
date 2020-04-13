@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItemStocksTable extends Migration
+class CreateInventoryLedgersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateItemStocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('item_stocks', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('warehouse_id');
-            $table->bigInteger('item_id');
-            $table->integer('saldo unit');
+        Schema::create('inventory_ledgers', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
-
-
         });
     }
 
@@ -31,6 +26,6 @@ class CreateItemStocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_stocks');
+        Schema::dropIfExists('inventory_ledgers');
     }
 }

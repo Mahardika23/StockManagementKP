@@ -8,7 +8,7 @@ class StockMovementType extends Model
 {
     //
     public function stockMovement(){
-        return $this->hasMany('App\Stock_movement','kode_jenis_pergerakan');
+        return $this->hasMany('App\StockMovement','kode_jenis_pergerakan');
 
     }
 }

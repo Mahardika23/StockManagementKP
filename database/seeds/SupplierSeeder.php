@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\ItemCategory;
-class KategoriBarangSeede extends Seeder
+class SupplierSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +11,7 @@ class KategoriBarangSeede extends Seeder
     public function run()
     {
         //
-        
-        
+        factory(App\Supplier::class, 5)->create();
+
     }
 }

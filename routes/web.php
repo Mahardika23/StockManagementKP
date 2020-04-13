@@ -30,13 +30,23 @@ Route::prefix('/Management-Data')->group(function () {
 
     Route::resources([
         'kategori-barang' => "KategoriBarangController",
-        'barang'          => "BarangResourceController",
+        'barang'          => "ItemResourceController",
         'satuan-unit'     => "UnitsResourceController",
-        'gudang'          => "WarehouseResourceController",
+        'gudang'          => "WarehouseController",
         'pemasok'         => "SuppliersResourceController",
-
+        'pajak'           => "TaxResourceController",  
+        'coa-master'      => "COAMasterController",
+        'coa-type'        => "COATypeController",
+        
     ]);
  
+});
+
+Route::resources([
+        'transfer-stock' => 'StockTransferController'
+    ]);
+Route::get('/token',function(){
+    return csrf_token();
 });
 
 Route::get('/post', 'StockController@index')->name('home')->middleware('auth');

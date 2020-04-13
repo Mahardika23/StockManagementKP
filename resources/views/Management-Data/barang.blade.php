@@ -34,7 +34,7 @@ Data Barang
 
         <tr>
             <td>{{$index+1}}</td>
-            <td>{{$i}}</td>
+            <td>{{$i->jenis_barang}}</td>
 
 
             <td> <span>
@@ -42,7 +42,7 @@ Data Barang
                 <span>
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <a class="delete-jquery" data-method="delete"
-                        href="{{ route('barang.destroy', $k->id ) }}">Delete</a> </span></td>
+                        href="{{ route('barang.destroy', $i->id ) }}">Delete</a> </span></td>
         </tr>
         @endforeach
     @endsection

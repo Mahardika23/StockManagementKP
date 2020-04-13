@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Stock_movement extends Model
+class StockMovement extends Model
 {
     //
     public function MovementType(){

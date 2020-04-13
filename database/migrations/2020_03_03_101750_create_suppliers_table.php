@@ -16,8 +16,11 @@ class CreateSuppliersTable extends Migration
         Schema::create('suppliers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('kode_supplier');
-
             $table->string('nama_supplier')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('min_pembelian')->nullable();
+            $table->bigInteger('akun_pembelian');
+            
             $table->timestamps();
         });
     }

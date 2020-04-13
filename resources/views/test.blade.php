@@ -14,6 +14,7 @@
     <table id="table_id" class="hover">
         <thead>
             <tr>
+                lorem*10
                 <th>Column 1</th>
                 <th>Column 2</th>
             </tr>

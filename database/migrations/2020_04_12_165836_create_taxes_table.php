@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUnitsTable extends Migration
+class CreateTaxesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('units', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('kode_satuan');
-            $table->string('nama_satuan');
+        Schema::create('taxes', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->float('rate');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('units');
+        Schema::dropIfExists('taxes');
     }
 }

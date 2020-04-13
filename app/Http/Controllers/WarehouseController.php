@@ -2,84 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use App\Warehouse;
 use Illuminate\Http\Request;
+use App\Repositories\Repository;
+use App\Warehouse;
+use App\Http\Requests\CreateItemCategoryRequest;
 
 class WarehouseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
+    protected $model;
+    public function __construct(Warehouse $wh){
+        $this->model = new Repository($wh);
+    }
     public function index()
     {
         //
+      
+        $allData = $this->model->all();
+        return view('Management-Data/gudang',compact("allData"));
+
+
+
+}
+    public function store(CreateItemCategory $request)
+    {
+        $input = $request->validated();
+        $data= $this->model->create($input);
+        return redirect()->back();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function show($id)
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function update(Request $request, $id)
     {
         //
+        $input = $request->only($this->model->getModel()->fillable);
+       
+        return redirect()->back();
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Warehouse  $warehouse
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Warehouse $warehouse)
+    public function destroy($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Warehouse  $warehouse
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Warehouse $warehouse)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Warehouse  $warehouse
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Warehouse $warehouse)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Warehouse  $warehouse
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Warehouse $warehouse)
-    {
-        //
+        $this->model->delete($id);
+        return "Success";
     }
 }

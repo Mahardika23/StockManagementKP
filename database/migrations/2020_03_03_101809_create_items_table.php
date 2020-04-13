@@ -22,9 +22,12 @@ class CreateItemsTable extends Migration
             $table->bigInteger('satuan_unit');
             $table->integer('harga_retail');
             $table->integer('harga_grosir');
-            $table->float('hpp',11,3);
-            $table->bigInteger('kode_pajak');
             $table->string('item_image');
+            $table->bigInteger('akun_hpp');
+            $table->bigInteger('akun_persediaan');
+            $table->bigInteger('akun_penjualan');
+            $table->bigInteger('akun_pembelian');
+            $table->bigInteger('pajak_id')->nullable();
             $table->bigInteger('supplier_id');
             
             $table->timestamps();
