@@ -43,7 +43,9 @@ Route::prefix('/Management-Data')->group(function () {
 });
 
 Route::resources([
-        'transfer-stock' => 'StockTransferController'
+        'transfer-stock'    => 'StockTransferController',
+        'stock-opname'      => 'StockOpnameController',
+        'penyesuaian-stock' => 'StockAdjustmentController'  
     ]);
 Route::get('/token',function(){
     return csrf_token();

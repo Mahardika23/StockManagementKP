@@ -34,15 +34,15 @@ class ItemService{
         
     }
     public function getStocksByWhouse($id,$whsId){
-        return Items::find($id)->WarehouseStocks()->wherePivot('warehouse_id',$whsId);
+        return Items::find($id)->warehouseStocks()->wherePivot('warehouse_id',$whsId);
         
     }
     public function getStocksQtyByWhouse($whsId,$itemId){
-        return $this->getStocksByWhouse()->first()->pivot->quantity;
+        return $this->getStocksByWhouse($itemId,$whsId)->first()->pivot->quantity;
          
     }
     public function updateStocks($itemId,$whsId,$qty){
-
+        
         $itemStock = $this->getStocksByWhouse($itemId,$whsId);
         $itemStock->updateExistingPivot($whsId,['quantity'=>$qty]);
         return 201;

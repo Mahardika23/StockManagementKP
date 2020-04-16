@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class StockTransfer extends Model
 {
@@ -11,6 +12,7 @@ class StockTransfer extends Model
     // {
     //     return $this->belongsToMany('App\Role', 'role_user_table', 'user_id', 'role_id');
     // }
+    use SoftDeletes;
     public $guarded=['id'];
     public function items(){
         {

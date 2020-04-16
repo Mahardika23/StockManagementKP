@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\StockOpname;
 use App\Services\ItemService;
+use App\Services\StockOpnameService;
 use Illuminate\Http\Request;
+
 
 class StockOpnameController extends Controller
 {
@@ -34,16 +36,26 @@ class StockOpnameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ItemService $itemServ,Request $req)
+    public function store(StockOpnameService $stockServ,ItemService $itemServ,Request $req)
     {
         //
 
-        $input = $req->input;
-        $itemId = $input['item_id'];
-        $whouseId = $input['warehouse_id'];
-        $qty =$input['qty'];
-        $itemServ->updateStocks($itemId,$whouseId,$qty);
+        $input = $req->input();
+        $stockServ->makeTransJournal($input);
         
+        $itemId = $input['item_id'];
+        $whouseId = $input['gudang_id'];
+        foreach ($itemId as $index => $id) {
+            $onBook = $itemServ->getStocksQtyByWhouse($input['gudang_id'],$id); 
+            $itemServ->updateStocks($id,$whouseId,$input['on_hand'][$index]);
+
+            $stockOp->details()->attach($id,[
+                'jumlah_tercatat' => $onBook,
+                'jumlah_fisik'    => $input['on_hand'][$index]
+            ]);
+
+        }
+        return $stockOp;
     }
 
     /**

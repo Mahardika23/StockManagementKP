@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStockOpnamesTable extends Migration
+class CreateJournalTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateStockOpnamesTable extends Migration
      */
     public function up()
     {
-        Schema::create('stock_opnames', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('gudang_id');
-            $table->text('deskripsi');
-            $table->string('departemen');
+        Schema::create('journal_transactions', function (Blueprint $table) {
+            $table->id();
+            $table->string('transactionable_type');
+            $table->integer('transactionable_id');
+            $table->mediumInteger('account_no');
+            $table->float('amount');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -30,6 +30,6 @@ class CreateStockOpnamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stock_opnames');
+        Schema::dropIfExists('journal_transactions');
     }
 }
