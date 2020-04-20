@@ -15,6 +15,16 @@ class CreateInventoryLedgersTable extends Migration
     {
         Schema::create('inventory_ledgers', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_ref');
+            $table->bigInteger('units');
+            $table->bigInteger('akun_debit');
+            $table->bigInteger('akun_kredit');
+            $table->bigInteger('debit');
+            $table->bigInteger('kredit');
+            
+            
+            // $table->float('jumlah');
+
             $table->timestamps();
         });
     }

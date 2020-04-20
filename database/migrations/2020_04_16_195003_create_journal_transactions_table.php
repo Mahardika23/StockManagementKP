@@ -18,8 +18,11 @@ class CreateJournalTransactionsTable extends Migration
             $table->string('transactionable_type');
             $table->integer('transactionable_id');
             $table->mediumInteger('account_no');
+            // $table->float('');
             $table->float('amount');
+            $table->text('catatan');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

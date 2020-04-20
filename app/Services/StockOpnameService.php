@@ -6,18 +6,14 @@ use App\Repositories\Repository;
 class StockOpnameService
 {
     private $stockOp;
-    public function __construct(){
+    public function __construct(StockOpname $stockop){
+        $this->stockOp = new Repository($stockop);
 
     }
     public function makeTransJournal($data){
-        $this->stockOp = new StockOpname;
-        $stockOp->gudang_id = $input['gudang_id'];
-        $stockOp->deskripsi = $input['deskripsi'];
-        $stockOp->departemen = $input['departemen'];
-       
-        $this->stockOp->save();
         
-        // $stockOp->save();
+        return $this->stockOp->create($data)->id;
+       
 
     }
 

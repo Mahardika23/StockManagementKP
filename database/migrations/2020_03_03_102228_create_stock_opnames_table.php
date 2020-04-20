@@ -18,6 +18,7 @@ class CreateStockOpnamesTable extends Migration
             $table->bigInteger('gudang_id');
             $table->text('deskripsi');
             $table->string('departemen');
+            $table->bigInteger('akun_penyesuaian');
             $table->timestamps();
             $table->softDeletes();
         });

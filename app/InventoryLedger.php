@@ -11,8 +11,8 @@ class InventoryLedger extends Model
     use SoftDeletes;
     public $guarded = [];
     
-    // public function (){
-
+    // public function trans (){
+    //     return $this->belongsToMany('App\JournalTransaction','')
     // }
 
 }

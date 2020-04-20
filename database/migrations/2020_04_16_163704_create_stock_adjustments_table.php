@@ -16,7 +16,7 @@ class CreateStockAdjustmentsTable extends Migration
         Schema::create('stock_adjustments', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('warehouse_id');
-            $table->bigInteger('akun_persediaan');
+            $table->bigInteger('akun_penyesuaian');
             $table->text('deskripsi')->nullable();
             
             

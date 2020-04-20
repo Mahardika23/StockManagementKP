@@ -41,7 +41,7 @@ Route::prefix('/Management-Data')->group(function () {
     ]);
  
 });
-
+Route::post('/stock-opname/posting/{id}','StockOpnameController@posting');
 Route::resources([
         'transfer-stock'    => 'StockTransferController',
         'stock-opname'      => 'StockOpnameController',

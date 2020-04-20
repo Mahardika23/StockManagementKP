@@ -49,7 +49,7 @@ class ItemService{
 
 
     }
-     public function delete(){
+     public function delete($id){
         
     }
 }

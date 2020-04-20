@@ -6,7 +6,8 @@ use App\StockOpname;
 use App\Services\ItemService;
 use App\Services\StockOpnameService;
 use Illuminate\Http\Request;
-
+use App\Services\InventoryLedgerService;
+use Illuminate\Support\Facades\DB;
 
 class StockOpnameController extends Controller
 {
@@ -40,21 +41,28 @@ class StockOpnameController extends Controller
     {
         //
 
-        $input = $req->input();
-        $stockServ->makeTransJournal($input);
+        $opnameItems = $req->input();
         
-        $itemId = $input['item_id'];
-        $whouseId = $input['gudang_id'];
+        $transData = $req->except('item_id','on_hand');
+        $stockOp = StockOpname::findOrFail($stockServ->makeTransJournal($transData));
+        
+
+        $itemId = $opnameItems['item_id'];
+        $whouseId = $opnameItems['gudang_id'];
+    
         foreach ($itemId as $index => $id) {
-            $onBook = $itemServ->getStocksQtyByWhouse($input['gudang_id'],$id); 
-            $itemServ->updateStocks($id,$whouseId,$input['on_hand'][$index]);
+            $onBook = $itemServ->getStocksQtyByWhouse($opnameItems['gudang_id'],$id); 
+            $itemServ->updateStocks($id,$whouseId,$opnameItems['on_hand'][$index]);
 
             $stockOp->details()->attach($id,[
                 'jumlah_tercatat' => $onBook,
-                'jumlah_fisik'    => $input['on_hand'][$index]
+                'jumlah_fisik'    => $opnameItems['on_hand'][$index]
             ]);
 
-        }
+        }    
+    
+        
+        
         return $stockOp;
     }
 
@@ -64,9 +72,13 @@ class StockOpnameController extends Controller
      * @param  \App\StockOpname  $stockOpname
      * @return \Illuminate\Http\Response
      */
-    public function show(StockOpname $stockOpname)
+    public function posting(InventoryLedgerService $invLedg,$id)
     {
         //
+        $stockOpname = new StockOpname;
+
+        return $invLedg->posting($stockOpname->with('details')->where('id',$id)->get());
+        return 201;
     }
 
     /**

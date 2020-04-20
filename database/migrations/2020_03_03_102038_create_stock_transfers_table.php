@@ -18,6 +18,7 @@ class CreateStockTransfersTable extends Migration
             $table->string('kode_ref')->nullable();
             $table->bigInteger('gudang_asal');
             $table->bigInteger('gudang_tujuan');
+            $table->bigInteger('akun_penyesuaian');
             $table->text('deskripsi')->nullable();
             $table->string('departemen');
             $table->timestamps();

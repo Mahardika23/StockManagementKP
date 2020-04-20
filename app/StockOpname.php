@@ -9,10 +9,10 @@ class StockOpname extends Model
 {
     //
     use SoftDeletes;    
-    public $guarded = [];
-    public function details(){
-        return $this->belongsToMany('App\Items','stock_opname_details','stock_opname_id','item_id');
 
+    public $guarded = ['created_at','updated_at'];
+    public function details(){
+        return $this->belongsToMany('App\Items','stock_opname_details','stock_opname_id','item_id')->withPivot('jumlah_tercatat','jumlah_fisik');
     }
 }       
  

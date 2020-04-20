@@ -9,6 +9,6 @@ class JournalTransactionController extends Controller
     //
     // protected $fillable = [];
     public function __construct(){
-            
+        
     }
 }
