@@ -5,9 +5,6 @@ use App\Repositories\Repository;
 use App\Items;
 class ItemService{
     protected $model;
-    public function __construct(Items $items){
-    //   $this->model = new Repository($items);
-    }
     public function all (){
         return Items::all();
     }

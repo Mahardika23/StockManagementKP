@@ -37,14 +37,14 @@ class StockOpnameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StockOpnameService $stockServ,ItemService $itemServ,Request $req)
+    public function store(StockOpnameService $opnameServ,ItemService $itemServ,Request $req)
     {
         //
 
         $opnameItems = $req->input();
         
         $transData = $req->except('item_id','on_hand');
-        $stockOp = StockOpname::findOrFail($stockServ->makeTransJournal($transData));
+        $stockOp = StockOpname::findOrFail($opnameServ->makeTransJournal($transData));
         
 
         $itemId = $opnameItems['item_id'];
@@ -77,7 +77,7 @@ class StockOpnameController extends Controller
         //
         $stockOpname = new StockOpname;
 
-        return $invLedg->posting($stockOpname->with('details')->where('id',$id)->get());
+        // return $invLedg->posting($stockOpname->with('details')->where('id',$id)->get());
         return 201;
     }
 

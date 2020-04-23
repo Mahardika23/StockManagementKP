@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             TaxSeeder::class,
             COASeeder::class,
             ItemSeeder::class,
+            MethodSeeder::class,
 
         ]);
     }
