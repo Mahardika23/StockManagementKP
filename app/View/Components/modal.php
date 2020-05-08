@@ -25,4 +25,8 @@ class modal extends Component
     {
         return view('components.modal');
     }
+
+    public function data(){
+        return "1234";
+    }
 }
