@@ -36,8 +36,8 @@ Data Gudang
             <td>{{$w->no_telp}}</td>
             <td>{{$w->status}}</td>
             
-            <td>{{$w->created_at}}</td>
-            <td>{{$w->updated_at}}</td>
+            <td>{{\Carbon\Carbon::parse($w->created_at)->format('d-m-Y')}}</td>
+            <td>{{\Carbon\Carbon::parse($w->created_at)->format('d-m-Y')}}</td>
 
             <td> <span>
             <a href="" data-form="Edit Data" data-toggle="modal" data-ctgid="{{$w->id}}" data-target=#modal> Edit</a></span> |

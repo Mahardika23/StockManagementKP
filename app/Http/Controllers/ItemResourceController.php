@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Items;
 use Illuminate\Http\Request;
 use App\Services\ItemService;
@@ -16,13 +17,9 @@ class ItemResourceController extends Controller
 
     public function index(ItemService $item)
     {
-
-        $allItem = $item->all();
-        return $allItem;
-        return view('Management-Data/barang',compact("allItem"));
-
-
-
+        $allItem = $item->except(['harga_retail', 'harga_grosir', 'item_image', 'akun_hpp', 'pajak_id', 'supplier_id']);
+        // return $allItem;
+        return view('Management-Data/barang', compact("allItem"));
     }
 
     /**
@@ -78,8 +75,6 @@ class ItemResourceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-
     }
 
     /**

@@ -18,11 +18,10 @@ Data Barang
         <th>Satuan Unit</th>
         <th>Harga Satuan</th>
         <th>Harga Grosir</th>
-        <th>Harga Pokok Penjualan</th>
-        <th>Pajak</th>
-        <th>Supplier</th>
+        <th>Nilai Barang</th>
         <th>Created at</th>
         <th>Updated At</th>
+        <th>Opsi</th>
     </tr>
     @endsection
 
@@ -33,8 +32,15 @@ Data Barang
         @foreach($allItem as $index => $i)
 
         <tr>
-            <td>{{$index+1}}</td>
+            <td>{{ $index+1 }}</td>
+            <td>{{ $i->kategori_barang }}</td>
             <td>{{$i->jenis_barang}}</td>
+            <td>{{$i->satuan_unit}}</td>
+            <td>{{$i->harga_retail}}</td>
+            <td>{{$i->harga_grosir}}</td>
+            <td>{{$i->nilai_barang}}</td>
+            <td>{{\Carbon\Carbon::parse($i->created_at)->format('d-m-Y')}}</td>
+            <td>{{\Carbon\Carbon::parse($i->updated_at)->format('d-m-Y')}}</td>
 
 
             <td> <span>
@@ -49,7 +55,7 @@ Data Barang
     
 @section('modalId')
 modalKategoriBarang
-@endsection
+@endsection 
 
 @section('modalForm')
 <label for="kodeKategori">Kode Kategori </label>

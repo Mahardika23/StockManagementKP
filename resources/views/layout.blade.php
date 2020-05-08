@@ -68,7 +68,7 @@
                 <li>Stok Keluar</li>
 
             </ul>
-            <a href="#">
+            <a href="{{ route('stock-opname.index')}}">
                 <li>Stok Opname</li>
                 <i class="menu-icon fas fa-sync" title="Stok Opname"></i>
 

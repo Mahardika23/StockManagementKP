@@ -32,6 +32,7 @@ class CogsCalculationService
     {
         $jumlah =  ($itemData->pivot->harga_beli * $itemData->pivot->quantity) + ($itemData->nilai_barang * $stocks);
         $total = $itemData->pivot->quantity + $stocks;
-        return $jumlah/$total;
+        $avg =  $jumlah/$total;
+        return $avg;
     }
 }

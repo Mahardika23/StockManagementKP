@@ -6,6 +6,7 @@ use App\StockTransfer;
 use Illuminate\Http\Request;
 use App\Services\StockTransferService;
 use App\Http\Requests\CreateStockTransferRequest;
+
 class StockTransferController extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class StockTransferController extends Controller
     {
         //
         $allData = $stockTf->all();
-        return view('transfer-stock',compact($allData));
+        return view('transfer-stock', compact($allData));
     }
 
     /**
@@ -25,14 +26,10 @@ class StockTransferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(StockTransferService $stockTf,Request $req)
-    {
-        //
-      
-    }
+    
 
-    public function posting(){
-        //Post transactions to 
+    public function posting()
+    {
     }
 
     /**
@@ -41,13 +38,11 @@ class StockTransferController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StockTransferService $stockTf,CreateStockTransferRequest $req)
+    public function store(StockTransferService $stockTf, StockTransferRequest $req)
     {
         //
         $input = $req->validated();
         return $stockTf->make($input);
-        
-
     }
 
     /**
@@ -61,17 +56,7 @@ class StockTransferController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\StockTransfer  $stockTransfer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(StockTransfer $stockTransfer)
-    {
-        //
-    }
-
+  
     /**
      * Update the specified resource in storage.
      *
@@ -95,6 +80,5 @@ class StockTransferController extends Controller
         //
         $this->model->delete($id);
         return "Success";
-    
     }
 }

@@ -32,8 +32,9 @@ Data Pemasok
             <td>{{$s->kode_supplier}}</td>
             <td>{{$s->nama_supplier}}</td>
         
-            <td>{{$s->created_at}}</td>
-            <td>{{$s->updated_at}}</td>
+            <td>{{\Carbon\Carbon::parse($s->created_at)->format('d-m-Y')}}</td>
+            <td>{{\Carbon\Carbon::parse($s->updated_at)->format('d-m-Y')}}</td>
+
 
             <td> <span>
             <a href="" data-form="Edit Data" data-toggle="modal" data-ctgid="{{$s->id}}" data-target=#modal> Edit</a></span> |

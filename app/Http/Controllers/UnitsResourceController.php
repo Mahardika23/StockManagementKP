@@ -15,7 +15,8 @@ class UnitsResourceController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $model;
-    public function __construct(Unit $unit){
+    public function __construct(Unit $unit)
+    {
         $this->model = new Repository($unit);
     }
     public function index()
@@ -23,11 +24,7 @@ class UnitsResourceController extends Controller
         //
       
         $allUnits = $this->model->all();
-        // return "hello?";
-        return view('Management-Data/satuan-unit',compact("allUnits"));
-
-
-
+        return view('Management-Data/satuan-unit', compact("allUnits"));
     }
 
     /**
@@ -80,10 +77,9 @@ class UnitsResourceController extends Controller
     {
         //
         $input = $request->only($this->model->getModel()->fillable);
-        return $this->model->update($input,$id);
+        return $this->model->update($input, $id);
 
         return redirect()->back();
-
     }
 
     /**

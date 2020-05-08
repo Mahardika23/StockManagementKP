@@ -15,9 +15,10 @@ class CreateStockOpnamesTable extends Migration
     {
         Schema::create('stock_opnames', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('kode_ref');
             $table->bigInteger('gudang_id');
-            $table->text('deskripsi');
-            $table->string('departemen');
+            $table->text('deskripsi')->nullable();
+            $table->string('departemen')->nullable();
             $table->bigInteger('akun_penyesuaian');
             $table->timestamps();
             $table->softDeletes();

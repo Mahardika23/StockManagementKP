@@ -62,5 +62,4 @@ class Repository
     {
         return $this->model->with($relations);
     }
-    
 }

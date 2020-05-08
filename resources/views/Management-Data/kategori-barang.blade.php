@@ -15,6 +15,7 @@ Data Kategori Barang
         <th>No</th>
         <th>Kode</th>
         <th>Kategori</th>
+        <th>Dibuat Pada</th>
         <th>Opsi</th>
     </tr>
     @endsection
@@ -29,6 +30,7 @@ Data Kategori Barang
             <td>{{$index+1}}</td>
             <td>{{$k->akun}}</td>
             <td>{{$k->nama_kategori}}</td>
+            <td>{{\Carbon\Carbon::parse($k->created_at)->format('d-m-Y')}}</td>
             <td> <span>
             <a href="" data-form="Edit Data" data-toggle="modal" data-ctgid="{{$k->id}}" data-target=#modal> Edit</a></span> |
                 <span>

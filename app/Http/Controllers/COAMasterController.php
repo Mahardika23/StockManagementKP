@@ -1,30 +1,40 @@
 <?php
 
+/**
+ * Hello HElo
+ * @category
+ * @package
+ * 
+ *  */
+
 namespace App\Http\Controllers;
+
 use App\Repositories\Repository;
 use App\CoaMaster;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateTaxRequest;
 
 class COAMasterController extends Controller
 {
     //
     protected $model;
-    public function __construct(CoaMaster $coaM){
+    public function __construct(CoaMaster $coaM)
+    {
         $this->model = new Repository($coaM);
     }
     public function index()
     {
         //
-      
+
         $allData = $this->model->all();
-        return $allData;    
+        return $allData;
         // return view('Management-Data/pajak',compact("allData"));
 
     }
     public function store(CreateTaxRequest $request)
     {
         $input = $request->input();
-        $data= $this->model->create($input);
+        $data = $this->model->create($input);
         return $data;
         return redirect()->back();
     }
@@ -33,9 +43,8 @@ class COAMasterController extends Controller
         //
         $input = $request->only($this->model->getModel()->fillable);
         // return $this->model->update($input,$id);
-        
-        return redirect()->back();
 
+        return redirect()->back();
     }
 
     public function destroy($id)
@@ -44,6 +53,4 @@ class COAMasterController extends Controller
         $this->model->delete($id);
         return "Success";
     }
-
-
 }

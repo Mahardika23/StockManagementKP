@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Arr;
+
 use App\StockOpname;
 use App\Services\ItemService;
 use App\Services\StockOpnameService;
 use Illuminate\Http\Request;
 use App\Services\InventoryLedgerService;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StockOpnameRequest;
 
 class StockOpnameController extends Controller
 {
@@ -19,9 +22,12 @@ class StockOpnameController extends Controller
     public function index()
     {
         //
+        $stokOp = StockOpname::all();
+        
+        return view('transactions/stock-opname', compact('stokOp'));
     }
 
-    /**
+    /*
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -37,32 +43,39 @@ class StockOpnameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StockOpnameService $opnameServ,ItemService $itemServ,Request $req)
+    public function store(StockOpnameService $opnameServ, ItemService $itemServ, StockOpnameRequest $req)
     {
         //
 
-        $opnameItems = $req->input();
-        
-        $transData = $req->except('item_id','on_hand');
+        $opnameItems = $req->validated();
+
+        $transData = Arr::except($opnameItems, ['item_id', 'on_hand']);
+        // return $transData;
         $stockOp = StockOpname::findOrFail($opnameServ->makeTransJournal($transData));
-        
+        //  $opnameServ->makeTransJournal($transData);
 
         $itemId = $opnameItems['item_id'];
         $whouseId = $opnameItems['gudang_id'];
-    
-        foreach ($itemId as $index => $id) {
-            $onBook = $itemServ->getStocksQtyByWhouse($opnameItems['gudang_id'],$id); 
-            $itemServ->updateStocks($id,$whouseId,$opnameItems['on_hand'][$index]);
+        DB::beginTransaction();
+        try {
+            foreach ($itemId as $index => $id) {
+                $onBook = $itemServ->getStocksQtyByWhouse($opnameItems['gudang_id'], $id);
+                $itemServ->updateStocks($id, $whouseId, $opnameItems['on_hand'][$index]);
 
-            $stockOp->details()->attach($id,[
-                'jumlah_tercatat' => $onBook,
-                'jumlah_fisik'    => $opnameItems['on_hand'][$index]
-            ]);
+                $stockOp->details()->attach($id, [
+                    'jumlah_tercatat' => $onBook,
+                    'jumlah_fisik'    => $opnameItems['on_hand'][$index]
+                ]);
+            }
+        } catch (\Exception $e) {
+            //throw $th;
+            DB::rollBack();
+            throw $e;
+        }
+        DB::commit();
 
-        }    
-    
-        
-        
+
+
         return $stockOp;
     }
 
@@ -72,12 +85,8 @@ class StockOpnameController extends Controller
      * @param  \App\StockOpname  $stockOpname
      * @return \Illuminate\Http\Response
      */
-    public function posting(InventoryLedgerService $invLedg,$id)
+    public function posting(InventoryLedgerService $invLedg, ItemService $itemServ, $id)
     {
-        //
-        $stockOpname = new StockOpname;
-
-        // return $invLedg->posting($stockOpname->with('details')->where('id',$id)->get());
         return 201;
     }
 
@@ -110,8 +119,33 @@ class StockOpnameController extends Controller
      * @param  \App\StockOpname  $stockOpname
      * @return \Illuminate\Http\Response
      */
-    public function destroy(StockOpname $stockOpname)
+    public function destroy(ItemService $itemServ, $id)
     {
         //
+
+        $stockOp = StockOpname::findOrFail($id);
+
+        if ($stockOp['status'] == 'posted') {
+            // return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            DB::beginTransaction();
+            try {
+                $recordedData =  $stockOp->with('details')->get()->first()->details;
+                foreach ($recordedData as $i => $data) {
+                    $stock = $itemServ->getStocksQtyByWhouse($stockOp->gudang_id, $data->id);
+
+                    $perubahan = $data->pivot->jumlah_fisik - $data->pivot->jumlah_tercatat;
+                    $revertStock = $stock - $perubahan;
+
+                    $itemServ->updateStocks($data->id, $stockOp->gudang_id, $revertStock);
+                }
+                $stockOp->delete();
+                $stockOp->details()->detach();
+            } catch (\Exception $e) {
+                DB::rollback();
+                throw $e;
+            }
+            DB::commit();
+        }
     }
 }
