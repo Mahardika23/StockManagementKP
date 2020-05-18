@@ -1,19 +1,20 @@
 @extends('../layout')
 @section('css')
 @parent
-
+<link rel="stylesheet" href="{{ asset('css/mgmt-data.css') }}">
 @endsection
 
 
 @section('content')
 @parent
 
+<div class="placeholder">
 <button class="btn btn-primary" id="tambah-data" type="button" data-form="Tambah Data" data-toggle="modal"
     data-target="#modal"> Tambah Data</button>
 
 
 <table id="table_id" class="display">
-
+ 
     <thead>
         <tr>
             @yield('tableHeader')
@@ -56,7 +57,7 @@
         </div>
     </div>
 </div>
-
+</div>
 @endsection
 
 @section('scripts')

@@ -53,4 +53,5 @@ Route::get('/token',function(){
     return csrf_token();
 });
 
+Route::view('/modal', 'components.steppermodal');
 Route::get('/post', 'StockController@index')->name('home')->middleware('auth');

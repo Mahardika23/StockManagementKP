@@ -49672,9 +49672,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/agaflex5/Development/KP/Stock Management System/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/agaflex5/Development/KP/Stock Management System/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/agaflex5/Development/KP/Stock Management System/resources/sass/tabel-data.scss */"./resources/sass/tabel-data.scss");
+__webpack_require__(/*! /home/aga/Development/StockManagementKP/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/aga/Development/StockManagementKP/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/aga/Development/StockManagementKP/resources/sass/tabel-data.scss */"./resources/sass/tabel-data.scss");
 
 
 /***/ })

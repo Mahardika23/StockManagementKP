@@ -72,7 +72,6 @@ body .sidebar ul a {
 body .sidebar ul a .menu-icon {
   color: white;
   float: right;
-  display: inline-block;
   font-size: 1.5em;
   margin-top: -1.9em;
   margin-right: 1.75em;
@@ -124,7 +123,6 @@ body .sidebar ul ul li:hover {
 
 body .sidebar ul .menu-icon {
   float: right;
-  display: inline-block;
   font-size: 1.5em;
   margin-left: 1em;
 }
