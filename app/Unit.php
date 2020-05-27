@@ -8,9 +8,8 @@ class Unit extends Model
 {
     //
     protected $fillable = ['nama_satuan'];
-    public function items(){
-        return $this->hasMany('App\Items','satuan_unit');
-
+    public function items()
+    {
+        return $this->hasMany('App\Items', 'satuan_unit');
     }
-
 }

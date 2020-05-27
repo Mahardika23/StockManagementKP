@@ -22,7 +22,7 @@ class CreateItemsRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {   
+    {
 
         return [
             'kode_barang' => 'required|alpha_dash|',

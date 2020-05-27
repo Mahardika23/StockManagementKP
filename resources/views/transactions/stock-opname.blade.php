@@ -1,6 +1,7 @@
 @extends('Management-Data.layout')
 
 @section('tableHeader')
+
 @section('css')
     @parent
 @endsection
@@ -37,3 +38,9 @@
         @endforeach
     </tr>
 @endsection
+<x-steppermodal/>
+
+
+<script>
+
+</script>

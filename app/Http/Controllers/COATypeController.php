@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Repositories\Repository;
 use App\CoaTypes;
 use Illuminate\Http\Request;
@@ -9,7 +10,8 @@ class COATypeController extends Controller
 {
     //
     protected $model;
-    public function __construct(CoaTypes $coaT){
+    public function __construct(CoaTypes $coaT)
+    {
         $this->model = new Repository($coaT);
     }
     public function index()
@@ -17,9 +19,8 @@ class COATypeController extends Controller
         //
       
         $allData = $this->model->with('chart')->get();
-        return $allData;    
-        return view('Management-Data/coa-type',compact("allData"));
-
+        return $allData;
+        return view('Management-Data/coa-type', compact("allData"));
     }
     public function store(CreateTaxRequest $request)
     {
@@ -32,10 +33,8 @@ class COATypeController extends Controller
     {
         //
         $input = $request->only($this->model->getModel()->fillable);
-        // return $this->model->update($input,$id);
         
         return redirect()->back();
-
     }
 
     public function destroy($id)
@@ -44,6 +43,4 @@ class COATypeController extends Controller
         $this->model->delete($id);
         return "Success";
     }
-
-
 }

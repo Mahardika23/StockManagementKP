@@ -77,7 +77,7 @@ class UnitsResourceController extends Controller
     {
         //
         $input = $request->only($this->model->getModel()->fillable);
-        return $this->model->update($input, $id);
+        $this->model->update($input, $id);
 
         return redirect()->back();
     }

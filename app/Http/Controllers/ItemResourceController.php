@@ -17,9 +17,11 @@ class ItemResourceController extends Controller
 
     public function index(ItemService $item)
     {
-        $allItem = $item->except(['harga_retail', 'harga_grosir', 'item_image', 'akun_hpp', 'pajak_id', 'supplier_id']);
+        // $allItem = $item->all();
+        $allItem = Items::with('unit:id,nama_satuan')->get();
         // return $allItem;
-        return view('Management-Data/barang', compact("allItem"));
+        // dd($allItem->unit);
+        return view('Management-Data/barang', ['data'=>$allItem]);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SupplierRequst;
 
 class SuppliersResourceController extends Controller
 {
@@ -15,10 +16,7 @@ class SuppliersResourceController extends Controller
       
         $model = new $this->modelName;
         $allData = $model->all();
-        return view('Management-Data/pemasok',compact("allData"));
-
-
-
+        return view('Management-Data/pemasok', compact("allData"));
     }
 
     /**
@@ -33,7 +31,7 @@ class SuppliersResourceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SupplierRequest $request)
     {
         //
         $input = $request->input();
@@ -61,7 +59,6 @@ class SuppliersResourceController extends Controller
     public function edit($id)
     {
         //
-      
     }
 
     /**
@@ -79,7 +76,6 @@ class SuppliersResourceController extends Controller
         $editData = $this->modelName::find($id);
         $editData->update($input);
         return redirect()->back();
-
     }
 
     /**

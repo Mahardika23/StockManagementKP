@@ -18,6 +18,7 @@ class CreateSuppliersTable extends Migration
             $table->string('kode_supplier');
             $table->string('nama_supplier')->nullable();
             $table->string('alamat')->nullable();
+            $table->string('no_telp')->nullable();
             $table->string('min_pembelian')->nullable();
             $table->bigInteger('akun_pembelian');
             

@@ -8,7 +8,6 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use OwenIt\Auditing\Contracts\Auditable;
 
-
 class User extends Authenticatable implements Auditable
 {
     use Notifiable;
@@ -42,7 +41,8 @@ class User extends Authenticatable implements Auditable
         'email_verified_at' => 'datetime',
     ];
 
-    public function method(){
-        return $this->belongsTo('App\InventoryMethod',"method_id");
+    public function method()
+    {
+        return $this->belongsTo('App\InventoryMethod', "method_id");
     }
 }

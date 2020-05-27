@@ -18,8 +18,7 @@ class CogsCalculationService
             return $itemData->nilai_barang;
         } elseif ($stocks <= 0) {
             return $itemData->pivot->harga_beli;
-        }
-        else{
+        } else {
             return "failed";
         }
     }

@@ -29,7 +29,7 @@ Route::post('/rolebaru','ConfigController@addRole');
 Route::prefix('/Management-Data')->group(function () {
 
     Route::resources([
-        'kategori-barang' => "KategoriBarangController",
+        'kategori-barang' => "ItemCategoryController",
         'barang'          => "ItemResourceController",
         'satuan-unit'     => "UnitsResourceController",
         'gudang'          => "WarehouseController",

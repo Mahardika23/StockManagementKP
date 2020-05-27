@@ -1,7 +1,6 @@
 @extends('Management-Data.layout')
 @section('css')
 @parent
-<link rel="stylesheet" href="{{asset('css/kategori-barang.css')}}">
 
 @endsection
 @section('title')
@@ -17,9 +16,9 @@ Data Gudang
         <th>Alamat</th>
         <th>No Telp</th>
         <th>Status</th>
-        <th>Opsi</th>
         <th>Dibuat Pada</th>
         <th>Terakhir Diubah</th>
+        <th>Opsi</th>
     </tr>
     @endsection
 
@@ -39,12 +38,16 @@ Data Gudang
             <td>{{\Carbon\Carbon::parse($w->created_at)->format('d-m-Y')}}</td>
             <td>{{\Carbon\Carbon::parse($w->created_at)->format('d-m-Y')}}</td>
 
-            <td> <span>
-            <a href="" data-form="Edit Data" data-toggle="modal" data-ctgid="{{$w->id}}" data-target=#modal> Edit</a></span> |
-                <span>
+            <td id="options"> 
+                <span id="edit-opt">
+                    <a href="" data-form="Edit Data" data-toggle="modal" data-ctgid="{{$w->id}}" data-target=#modal> Edit</a>
+                </span> |
+                <span id="delete-opt">
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <a class="delete-jquery" data-method="delete"
-                        href="{{ route('gudang.destroy', $w->id ) }}">Delete</a> </span></td>
+                        href="{{ route('gudang.destroy', $w->id ) }}">Delete</a> 
+                </span>
+            </td>
         </tr>
         @endforeach
     @endsection
@@ -54,14 +57,14 @@ modalGudang
 @endsection
 
 @section('modalForm')
-<label for="kodeGudang">Kode Gudang </label>
-<input class="form-control" type="text" name="kode_gudang" id="kodeGudang">
-<label for="Alamat">Alamat </label>
-<textarea class="form-control" type="textarea" name="alamat" id="Alamat" rows="5"></textarea>
-<label for="noTelp">No Telpon:  </label>
-<input class="form-control" type="text" name="no_telp" id="kodeGudang">
-<label for="status">Status</label>
-<select class="form-control" name="" id="#status">
+<label for="field1">Kode Gudang </label>
+<input class="form-control" type="text" name="kode_gudang" id="field1">
+<label for="field2">Alamat </label>
+<textarea class="form-control" type="textarea" name="alamat" id="field2" rows="5"></textarea>
+<label for="field3">No Telpon:  </label>
+<input class="form-control" type="text" name="no_telp" id="field3">
+<label for="field4">Status</label>
+<select class="form-control" name="" id="field4">
     <option value="aktif">Aktif</option>
     <option value="tidak aktif">Tidak Aktif</option>
 </select>

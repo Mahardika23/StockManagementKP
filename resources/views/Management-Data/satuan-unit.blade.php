@@ -1,7 +1,6 @@
 @extends('Management-Data.layout')
 @section('css')
 @parent
-<link rel="stylesheet" href="{{asset('css/kategori-barang.css')}}">
 
 @endsection
 @section('title')
@@ -33,13 +32,18 @@ Data Satuan Unit
             <td>{{\Carbon\Carbon::parse($u->created_at)->format('d-m-Y')}}</td>
             <td>{{\Carbon\Carbon::parse($u->updated_at)->format('d-m-Y')}}</td>
 
-            <td> <span>
-            <a href="" data-form="Edit Data" data-toggle="modal" data-ctgid="{{$u->id}}" data-target=#modal> Edit</a></span> |
-                <span>
+            <td id="options"> 
+                <span id="edit-opt">
+                    <a href="" data-form="Edit Data" data-toggle="modal" data-ctgid="{{$u->id}}" data-target=#modal> Edit</a>
+                </span> |
+                <span id="delete-opt">
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <a class="delete-jquery" data-method="delete"
-                        href="{{ route('satuan-unit.destroy', $u->id ) }}">Delete</a> </span></td>
+                        href="{{ route('satuan-unit.destroy', $u->id ) }}">Delete</a> 
+                </span>
+            </td>
         </tr>
+   
         @endforeach
     @endsection
 
@@ -49,7 +53,7 @@ Data Satuan Unit
 
 @section('modalForm')
 <label for="namaSatuan">Nama Satuan </label>
-<input class="form-control" type="text" name="nama_satuan" id="namaSatuan">
+<input class="form-control" type="text" name="nama_satuan" id="field1">
 @endsection
 
 @section('scripts')

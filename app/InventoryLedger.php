@@ -14,6 +14,4 @@ class InventoryLedger extends Model
     // public function trans (){
     //     return $this->belongsToMany('App\JournalTransaction','')
     // }
-
 }
-

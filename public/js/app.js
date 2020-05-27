@@ -49654,6 +49654,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/mgmt-data.scss":
+/*!***************************************!*\
+  !*** ./resources/sass/mgmt-data.scss ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/tabel-data.scss":
 /*!****************************************!*\
   !*** ./resources/sass/tabel-data.scss ***!
@@ -49666,15 +49677,16 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 0:
-/*!**********************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/tabel-data.scss ***!
-  \**********************************************************************************************/
+/*!******************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/tabel-data.scss ./resources/sass/mgmt-data.scss ***!
+  \******************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /home/aga/Development/StockManagementKP/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /home/aga/Development/StockManagementKP/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/aga/Development/StockManagementKP/resources/sass/tabel-data.scss */"./resources/sass/tabel-data.scss");
+__webpack_require__(/*! /home/aga/Development/StockManagementKP/resources/sass/tabel-data.scss */"./resources/sass/tabel-data.scss");
+module.exports = __webpack_require__(/*! /home/aga/Development/StockManagementKP/resources/sass/mgmt-data.scss */"./resources/sass/mgmt-data.scss");
 
 
 /***/ })

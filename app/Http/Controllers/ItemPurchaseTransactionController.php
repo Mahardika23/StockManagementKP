@@ -12,7 +12,6 @@ use App\Services\ItemPurchaseService;
 use App\Services\ItemService;
 use App\Items;
 
-
 class ItemPurchaseTransactionController extends Controller
 {
 
@@ -22,10 +21,7 @@ class ItemPurchaseTransactionController extends Controller
     }
     public function index()
     {
-        //
-
         $allData = $this->model->all();
-        return $allData;
         return view('item-purchases', compact("allData"));
     }
     public function store(Request $request, ItemPurchaseService $itemPurch)
@@ -67,8 +63,7 @@ class ItemPurchaseTransactionController extends Controller
             $item->nilai_barang = $calcserv->FIFO($item, $stocksData);
             $item->update();
             $invLedg->posting($item, $debit_account, $credit_account);
-        } else if ($userMethod == "LIFO") {
-
+        } elseif ($userMethod == "LIFO") {
             $item->nilai_barang = $calcserv->LIFO($item);
             $item->update();
             $invLedg->posting($item, $debit_account, $credit_account);

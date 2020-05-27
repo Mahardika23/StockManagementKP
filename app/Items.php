@@ -46,9 +46,9 @@ class Items extends Model
     {
         return $this->belongsToMany('App\Warehouse', 'warehouse_stocks', 'item_id', 'warehouse_id')
         ->withPivot('quantity');
-        }
-        public function tax()
-        {
+    }
+    public function tax()
+    {
         return $this->hasOne('App\Taxes', 'pajak_id');
     }
     public function scopeExclude($query, $value = array())

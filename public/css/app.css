@@ -54,7 +54,7 @@ body .sidebar ul {
   position: relative;
   padding: 0;
   list-style-type: none;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 body .sidebar ul #logout {
@@ -202,7 +202,7 @@ body .sidebar.collapsed ul a li {
 
 body .content.collapsed {
   transition: all 0.25s ease;
-  margin-left: 8vw;
+  margin-left: 12vw;
 }
 
 body .content {

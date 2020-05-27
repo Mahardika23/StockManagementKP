@@ -10,7 +10,8 @@ class CoaCategories extends Model
     protected $table = 'coa_categories';
     protected $fillable = ['nama_kategori'];
 
-    public function CoaType(){
-        return $this->hasMany('App\CoaTypes','coa_category');
+    public function coaType()
+    {
+        return $this->hasMany('App\CoaTypes', 'coa_category');
     }
 }

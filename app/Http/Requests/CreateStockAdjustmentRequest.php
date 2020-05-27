@@ -32,6 +32,4 @@ class CreateStockAdjustmentRequest extends FormRequest
             'quantity_diff'         => 'required|array',
         ];
     }
-    
-
 }

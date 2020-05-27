@@ -13,7 +13,7 @@ class SupplierRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,13 @@ class SupplierRequest extends FormRequest
     {
         return [
             //
+            'kode_supplier' => 'alpha_dash|required',
+            'nama_supplier' => 'required|string',
+            'alamat'        => 'required|string',
+            'no_telp'       => 'required|numeric',
+            'min_pembelian' => 'required|integer',
+            'akun_pembelian'=> 'required|integer'
+            
         ];
     }
 }

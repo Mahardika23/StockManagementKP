@@ -1,24 +1,23 @@
-<?php 
+<?php
 namespace App\Services;
 
 use App\InventoryLedger;
 use App\Repositories\Repository;
 
-class InventoryLedgerService 
+class InventoryLedgerService
 {
-    public function posting($items,$debitAaccount,$creditAccount){
+    public function posting($items, $debitAaccount, $creditAccount)
+    {
         // $data = $data->first();
         //Blum dikali harga barang
         // if ref == stock opnamee
         $diff = $items['pivot']['jumlah_tercatat']  - $items['pivot']['jumlah_fisik'];
-        if ($diff > 0){
+        if ($diff > 0) {
             $debit = $diff;
             $kredit  = $diff * -1;
-        } 
-        else{
+        } else {
             $debit = $diff * -1;
             $kredit = $diff;
-
         }
        
 
@@ -37,25 +36,5 @@ class InventoryLedgerService
         ];
 
         return InventoryLedger::create($ledger);
-
-
-
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>

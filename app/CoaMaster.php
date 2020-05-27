@@ -9,7 +9,8 @@ class CoaMaster extends Model
     //
     protected $table = 'coa_master';
     protected $fillable =['code,name,coa_type'];
-    public function coaType(){
+    public function coaType()
+    {
         return $this->belongsTo('App\CoaTypes');
     }
 }

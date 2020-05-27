@@ -13,7 +13,7 @@ class WarehouseRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,10 @@ class WarehouseRequest extends FormRequest
     {
         return [
             //
+            'kode_gudang'   => 'alpha_dash',
+            'alamat'        => 'required|string',
+            'no_telp'       => 'required|numeric',
+            'status'        => 'required',
         ];
     }
 }

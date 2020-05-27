@@ -24,6 +24,7 @@ class ItemCategoryRequest extends FormRequest
     public function rules()
     {
         return [
+            'kode_kategori' => 'required|alpha_dash',
             'nama_kategori' => 'required|string',
             //
         ];

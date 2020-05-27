@@ -8,7 +8,8 @@ class Supplier extends Model
 {
     //
     protected $guarded = [];
-    public function items(){
-        return $this->hasMany('App\Items','supplier_id');
+    public function items()
+    {
+        return $this->hasMany('App\Items', 'supplier_id');
     }
 }
